@@ -4,16 +4,24 @@ using UnityEngine;
 
 public class ReactiveTarget : MonoBehaviour
 {
-     public void ReactToHit()
+    [SerializeField]
+    private int damage = 1;
+
+    public void ReactToHit()
     {
         WanderingAI behavior = GetComponent<WanderingAI>();
 
         if (behavior != null)
         {
-            behavior.SetAlive(false);
+            if (behavior.isAlive) 
+            {
+                behavior.TakeDamage(damage);
+                if (!behavior.isAlive)
+                {
+                    StartCoroutine(Die());
+                }
+            }
         }
-
-        StartCoroutine(Die());
     }
 
     private IEnumerator Die()

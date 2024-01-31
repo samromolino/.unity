@@ -17,13 +17,37 @@ public class FireballScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        PlayerCharacter player = other.GetComponent<PlayerCharacter>();
+        string type = other.name;
 
-        if (player != null )
+        if (type == "Player")
         {
-            player.Hurt(damage);
+            PlayerCharacter player = other.GetComponent<PlayerCharacter>();
+
+            if (player != null)
+            {
+                player.Hurt(damage);
+                Destroy(this.gameObject);
+            }
         }
 
-        Destroy(this.gameObject);
+        else if (type == "Enemy(Clone)")
+        {
+            ReactiveTarget enemy = other.GetComponent<ReactiveTarget>();
+            if (enemy != null)
+            {
+                enemy.ReactToHit();
+                Destroy(this.gameObject);
+            }
+        }
+
+        else if(type == "Fireball(Clone)")
+        {
+            //nothing
+        }
+
+        else
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

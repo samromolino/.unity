@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 9166961843963584328}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -119,6 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 967bdaf2b94a79e4ab3246f4df63c742, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 1
 --- !u!114 &9166961843963584328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,6 +132,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 517f6fa7dd5f05b4cad2f081848fa79b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
   speed: 3
-  obstacleRange: 5
   fireballPrefab: {fileID: 3372158311970222736, guid: 574b1dce14c66044fa972f6520a9e02b, type: 3}
+  healthorbPrefab: {fileID: 6630164394339313872, guid: d0d954f6c81c97f48baeafa7be643a74, type: 3}
+  firerate: 1
+  health: 1
+  isAlive: 0

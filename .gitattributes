@@ -44,3 +44,8 @@
 /CIS-2859/3DBasics[[:space:]]lec2/Library/PackageCache/com.unity.visualscripting@1.9.1/Editor/VisualScripting.Core/EditorAssetResources/Unity.VisualScripting.TextureAssets.dll filter=lfs diff=lfs merge=lfs -text
 /CIS-2859/3DBasics[[:space:]]lec2/Library/ScriptAssemblies/Unity.VisualScripting.Core.Editor.dll filter=lfs diff=lfs merge=lfs -text
 /CIS-2859/3DBasics[[:space:]]lec2/Library/SourceAssetDB filter=lfs diff=lfs merge=lfs -text
+/CIS-2859/3DBasics[[:space:]]lec2/Library/Bee/1900b0aEDbg-inputdata.json filter=lfs diff=lfs merge=lfs -text
+/CIS-2859/3DBasics[[:space:]]lec2/Library/Bee/1900b0aEDbg.dag filter=lfs diff=lfs merge=lfs -text
+/CIS-2859/3DBasics[[:space:]]lec2/Library/Bee/1900b0aEDbg.dag.json filter=lfs diff=lfs merge=lfs -text
+/CIS-2859/3DBasics[[:space:]]lec2/Library/Bee/1900b0aEDbg.dag.payloads filter=lfs diff=lfs merge=lfs -text
+/CIS-2859/3DBasics[[:space:]]lec2/Library/Bee/artifacts/1900b0aEDbg.dag/Unity.VisualScripting.Core.Editor.dll filter=lfs diff=lfs merge=lfs -text
