@@ -46,7 +46,7 @@ public class SceneController : MonoBehaviour
         for (int i = 0; i < currentRound; i++)
         {
             enemy = Instantiate(enemyPrefab) as GameObject;
-            enemy.GetComponent<WanderingAI>().health = currentRound;
+            enemy.GetComponent<ChaseAI>().health = currentRound;
             enemy.transform.position = new Vector3((Random.Range(-10, 10)), 1, (Random.Range(-5, 5)));
         }
     }

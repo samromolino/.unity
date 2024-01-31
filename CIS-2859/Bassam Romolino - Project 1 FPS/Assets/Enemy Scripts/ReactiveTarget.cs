@@ -7,9 +7,11 @@ public class ReactiveTarget : MonoBehaviour
     [SerializeField]
     private int damage = 1;
 
+    public ChaseAI behavior;
+
     public void ReactToHit()
     {
-        WanderingAI behavior = GetComponent<WanderingAI>();
+        behavior = GetComponent<ChaseAI>();
 
         if (behavior != null)
         {
@@ -21,7 +23,16 @@ public class ReactiveTarget : MonoBehaviour
                     StartCoroutine(Die());
                 }
             }
+            else
+            {
+                behavior.health -= damage;
+            }
         }
+    }
+
+    public bool ShootThrough()
+    {
+        return behavior.health >= 0;
     }
 
     private IEnumerator Die()
