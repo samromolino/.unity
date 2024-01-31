@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RayShooter : MonoBehaviour
+public class PlayerShoot : MonoBehaviour
 {
     [SerializeField]
     private GameObject fireballPrefab;

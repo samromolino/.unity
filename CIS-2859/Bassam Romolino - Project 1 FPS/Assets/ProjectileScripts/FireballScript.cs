@@ -35,8 +35,13 @@ public class FireballScript : MonoBehaviour
             ReactiveTarget enemy = other.GetComponent<ReactiveTarget>();
             if (enemy != null)
             {
-                enemy.ReactToHit();
-                Destroy(this.gameObject);
+                {
+                    enemy.ReactToHit();
+                    if (enemy.ShootThrough())
+                    {
+                        Destroy(this.gameObject);
+                    }
+                }
             }
         }
 

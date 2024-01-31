@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WanderingAI : MonoBehaviour
+public class ChaseAI : MonoBehaviour
 {
     public Transform target;
 
