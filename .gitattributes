@@ -130,3 +130,4 @@
 /CIS-2859/Bassam[[:space:]]Romolino[[:space:]]-[[:space:]]Project[[:space:]]1[[:space:]]FPS/Library/SplashScreenCache/dc/dc623cf0ed2b090f563ed55c1eaaf50e filter=lfs diff=lfs merge=lfs -text
 /CIS-2859/Build/CIS-2859.wasm.gz filter=lfs diff=lfs merge=lfs -text
 /CIS-2859/project[[:space:]]1[[:space:]]webgl/Build/CIS-2859.wasm.gz filter=lfs diff=lfs merge=lfs -text
+/project[[:space:]]1[[:space:]]webgl/Build/CIS-2859.wasm.gz filter=lfs diff=lfs merge=lfs -text
