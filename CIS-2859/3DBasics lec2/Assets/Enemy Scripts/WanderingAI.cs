@@ -4,61 +4,89 @@ using UnityEngine;
 
 public class WanderingAI : MonoBehaviour
 {
+    public Transform target;
 
     [SerializeField]
     private float speed = 3.0f;
 
     [SerializeField]
-    private float obstacleRange = 5.0f;
+    private GameObject fireballPrefab;
 
     [SerializeField]
-    private GameObject fireballPrefab;
+    private GameObject healthorbPrefab;
+
+    [SerializeField]
+    private float firerate = 1.0f;
+
+    private float timer;
 
     private GameObject fireball;
 
-    private bool isAlive;
+    private GameObject healthorb;
+
+    public int health;
+
+    public bool isAlive;
+
+    private float minDistance = 3.0f;
+
+    private PlayerCharacter player;
+
 
     void Start()
     {
+        target = GameObject.FindWithTag("Player").transform;
+        timer = firerate;
         isAlive = true;
+        player = GameObject.Find("Player").GetComponent<PlayerCharacter>();
     }
 
-    public void SetAlive(bool isAlive)
+
+    public void TakeDamage (int damage)
     {
-        this.isAlive = isAlive;
+        this.health--;
+        if (health <= 0)
+        {
+            isAlive = false;
+        }
     }
 
     void Update()
     {
-        if (isAlive)
+        if (player.isAlive)
         {
-            transform.Translate(0, 0, speed * Time.deltaTime);
-
-            Ray ray = new Ray(transform.position, transform.forward);
-            RaycastHit hit;
-
-            if (Physics.SphereCast(ray, 0.75f, out hit))
+            if (isAlive)
             {
-                GameObject hitObject = hit.transform.gameObject;
+                timer += Time.deltaTime;
 
-                if (hitObject.GetComponent<PlayerCharacter>())
+                transform.LookAt(target.position);
+                if (Vector3.Distance(transform.position, target.position) >= minDistance)
                 {
-                    if(fireball == null)
-                    {
-                        fireball = Instantiate(fireballPrefab) as GameObject;
+                    transform.Translate(0, 0, speed * Time.deltaTime);
 
-                        fireball.transform.position = transform.TransformPoint(Vector3.forward * 1.5f);
-                        fireball.transform.rotation = transform.rotation;
-                    }
                 }
 
-                else if (hit.distance < obstacleRange)
+                Ray ray = new Ray(transform.position, transform.forward);
+                RaycastHit hit;
+
+                if (Physics.SphereCast(ray, 0.75f, out hit))
                 {
-                    float angle = Random.Range(-110, 110);
-                    transform.Rotate(0, angle, 0);
+                    GameObject hitObject = hit.transform.gameObject;
+
+                    if (hitObject.GetComponent<PlayerCharacter>())
+                    {
+                        if (fireball == null && (firerate - timer <= 0))
+                        {
+                            fireball = Instantiate(fireballPrefab) as GameObject;
+
+                            fireball.transform.position = transform.TransformPoint(Vector3.forward * 1.5f);
+                            fireball.transform.rotation = transform.rotation;
+
+                            timer = 0;
+                        }
+                    }
                 }
             }
         }
-
     }
 }

@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class PlayerCharacter : MonoBehaviour
 {
-    private int health;
+    [SerializeField]
+    private int health = 25;
 
+    public bool isAlive;
 
-    void Start()
+    void Awake()
     {
-        health = 5;
+        isAlive = true;
     }
 
     public void Hurt (int damage)
@@ -17,5 +19,20 @@ public class PlayerCharacter : MonoBehaviour
         health -= damage;
 
         Debug.Log($"Health: {health}");
+
+        if (health <= 0)
+        {
+            isAlive = false;
+            Debug.Log("Player has died");
+        }
+    }
+
+    public void Heal (int heal) 
+    { 
+        health += heal;
+        if (health > 25) 
+        { 
+            health = 25;
+        }
     }
 }

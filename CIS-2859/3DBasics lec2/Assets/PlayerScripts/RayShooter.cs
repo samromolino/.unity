@@ -4,12 +4,21 @@ using UnityEngine;
 
 public class RayShooter : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject fireballPrefab;
+
+    private GameObject fireball;
 
     private Camera camera;
 
+    private PlayerCharacter player;
+
+
     void Start()
-    {
+    {        
         camera = GetComponent<Camera>();
+        player = GameObject.Find("Player").GetComponent<PlayerCharacter>();
+
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -17,34 +26,20 @@ public class RayShooter : MonoBehaviour
 
     void Update()
     {
-        // 0 is lmb
-        if(Input.GetMouseButtonDown(0))
+        if (player.isAlive)
         {
-            Vector3 point = new Vector3(camera.pixelWidth / 2, camera.pixelHeight / 2, 0);
-            Ray ray = camera.ScreenPointToRay(point);
-            RaycastHit hit;
-
-            /*out keyword from C# allows us to pass the variable by reference, when the
-                variable hasn't necessarily been initialized yet.
-                In other words, the out ensures that the method it's being passed to must give that
-                parameter a value (otherwise, it will be a compiler error)
-            */
-            if (Physics.Raycast(ray, out hit))
+            // 0 is lmb
+            if (Input.GetMouseButtonDown(0))
             {
-                GameObject hitObject = hit.transform.gameObject;
-                ReactiveTarget target = hitObject.GetComponent<ReactiveTarget>();
+                fireball = Instantiate(fireballPrefab) as GameObject;
 
-                if ( target != null)
-                {
-                    target.ReactToHit();
-                }
-                else
-                {
-                    StartCoroutine(SphereIndicator(hit.point));
-                }
+                fireball.transform.position = transform.TransformPoint(Vector3.forward * 1.5f);
+                fireball.transform.rotation = transform.rotation;
 
             }
+
         }
+       
     }
 
     private IEnumerator SphereIndicator(Vector3 position)
@@ -65,3 +60,4 @@ public class RayShooter : MonoBehaviour
         GUI.Label(new Rect(posX, posY, size, size), "*");
     }
 }
+

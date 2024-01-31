@@ -13,22 +13,29 @@ public class FPSInput : MonoBehaviour
 
     private CharacterController characterController;
 
+    PlayerCharacter player;
+
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
+        player = GetComponent<PlayerCharacter>();
+
     }
 
     void Update()
     {
-        float deltaX = Input.GetAxis("Horizontal") * speed;
-        float deltaZ = Input.GetAxis("Vertical") * speed;
+        if (player.isAlive)
+        {
+            float deltaX = Input.GetAxis("Horizontal") * speed;
+            float deltaZ = Input.GetAxis("Vertical") * speed;
 
-        Vector3 movement = new Vector3 (deltaX, 0, deltaZ);
-        movement = Vector3.ClampMagnitude(movement, speed);
-        movement.y = gravity;
-        movement *= Time.deltaTime;
+            Vector3 movement = new Vector3(deltaX, 0, deltaZ);
+            movement = Vector3.ClampMagnitude(movement, speed);
+            movement.y = gravity;
+            movement *= Time.deltaTime;
 
-        movement = transform.TransformDirection(movement);
-        characterController.Move(movement);
+            movement = transform.TransformDirection(movement);
+            characterController.Move(movement);
+        }
     }
 }
