@@ -40,7 +40,7 @@ public class FireballScript : MonoBehaviour
             }
         }
 
-        else if(type == "Fireball(Clone)")
+        else if(type == "Fireball(Clone)" || type == "Healthorb(Clone)")
         {
             //nothing
         }

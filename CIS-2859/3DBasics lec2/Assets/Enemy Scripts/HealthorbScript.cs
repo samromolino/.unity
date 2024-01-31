@@ -8,9 +8,19 @@ public class HealthorbScript : MonoBehaviour
     private int heal = 2;
 
 
+    [SerializeField]
+    private float maxTime = 5;
+
+    private float timer = 0;
+
     void Update()
     {
+        timer += Time.deltaTime;
 
+        if (maxTime - timer <= 0)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -18,12 +28,13 @@ public class HealthorbScript : MonoBehaviour
         string type = other.name;
 
         if (type == "Player")
+
         {
             PlayerCharacter player = other.GetComponent<PlayerCharacter>();
 
             if (player != null)
             {
-                player.Hurt(heal);
+                player.Heal(heal);
                 Destroy(this.gameObject);
             }
         }

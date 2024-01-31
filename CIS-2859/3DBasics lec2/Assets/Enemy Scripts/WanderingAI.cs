@@ -48,6 +48,9 @@ public class WanderingAI : MonoBehaviour
         if (health <= 0)
         {
             isAlive = false;
+            healthorb = Instantiate(healthorbPrefab) as GameObject;
+            healthorb.transform.position = transform.TransformPoint(Vector3.forward);
+
         }
     }
 

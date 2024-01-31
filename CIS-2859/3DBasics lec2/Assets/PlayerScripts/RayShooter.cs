@@ -42,7 +42,7 @@ public class RayShooter : MonoBehaviour
        
     }
 
-    private IEnumerator SphereIndicator(Vector3 position)
+    /*private IEnumerator SphereIndicator(Vector3 position)
     {
         GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
         sphere.transform.position = position;
@@ -50,7 +50,7 @@ public class RayShooter : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         Destroy(sphere);
-    }
+    }*/
 
     private void OnGUI()
     {

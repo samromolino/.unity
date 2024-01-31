@@ -34,5 +34,7 @@ public class PlayerCharacter : MonoBehaviour
         { 
             health = 25;
         }
+        Debug.Log($"Health: {health}");
+
     }
 }
