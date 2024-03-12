@@ -32,6 +32,8 @@ public class ChaseAI : MonoBehaviour
 
     private PlayerCharacter player;
 
+    public const float baseSpeed = 3.0f;
+
 
     void Start()
     {
@@ -42,7 +44,7 @@ public class ChaseAI : MonoBehaviour
     }
 
 
-    public void TakeDamage (int damage)
+    public void TakeDamage (int damage) 
     {
         this.health--;
         if (health <= 0)
@@ -91,5 +93,20 @@ public class ChaseAI : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void OnEnable()
+    {
+        Messenger<float>.AddListener(GameEvent.SPEED_CHANGE, OnSpeedChange);
+    }
+
+    private void OnDisable()
+    {
+        Messenger<float>.RemoveListener(GameEvent.SPEED_CHANGE, OnSpeedChange);
+    }
+
+    private void OnSpeedChange(float value)
+    {
+        speed = baseSpeed * value;
     }
 }

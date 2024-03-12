@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerShoot : MonoBehaviour
 {
@@ -18,10 +19,6 @@ public class PlayerShoot : MonoBehaviour
     {        
         camera = GetComponent<Camera>();
         player = GameObject.Find("Player").GetComponent<PlayerCharacter>();
-
-
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
 
     void Update()
@@ -29,7 +26,7 @@ public class PlayerShoot : MonoBehaviour
         if (player.isAlive)
         {
             // 0 is lmb
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
             {
                 fireball = Instantiate(fireballPrefab) as GameObject;
 
@@ -41,16 +38,6 @@ public class PlayerShoot : MonoBehaviour
         }
        
     }
-
-    /*private IEnumerator SphereIndicator(Vector3 position)
-    {
-        GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-        sphere.transform.position = position;
-
-        yield return new WaitForSeconds(1);
-
-        Destroy(sphere);
-    }*/
 
     private void OnGUI()
     {

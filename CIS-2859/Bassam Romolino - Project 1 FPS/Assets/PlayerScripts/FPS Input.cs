@@ -15,6 +15,8 @@ public class FPSInput : MonoBehaviour
 
     PlayerCharacter player;
 
+    public const float baseSpeed = 3.0f;
+
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -37,5 +39,20 @@ public class FPSInput : MonoBehaviour
             movement = transform.TransformDirection(movement);
             characterController.Move(movement);
         }
+    }
+
+    private void OnEnable()
+    {
+        Messenger<float>.AddListener(GameEvent.SPEED_CHANGE, OnSpeedChange);
+    }
+
+    private void OnDisable()
+    {
+        Messenger<float>.RemoveListener(GameEvent.SPEED_CHANGE, OnSpeedChange);
+    }
+
+    private void OnSpeedChange(float value)
+    {
+        speed = baseSpeed * value;
     }
 }
